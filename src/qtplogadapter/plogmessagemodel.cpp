@@ -17,7 +17,7 @@ PlogMessageModel::PlogMessageModel(QObject *parent)
     gui_appender->setWriteToBuffer(false);
 
     for (const auto& message: gui_appender->buffer()) {
-        m_buffer.append(message);
+        m_buffer.prepend(message);
     }
 
     connect(gui_appender, &GuiAppender::messageAppended, this, &PlogMessageModel::onMessageAppended);
@@ -79,7 +79,7 @@ void PlogMessageModel::clear()
 
 void PlogMessageModel::onMessageAppended(GuiMessage guiMessage)
 {
-    beginInsertRows(QModelIndex(), m_buffer.size(), m_buffer.size());
-    m_buffer.append(guiMessage);
+    beginInsertRows(QModelIndex(), 0, 0);
+    m_buffer.prepend(guiMessage);
     endInsertRows();
 }
