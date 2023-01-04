@@ -27,6 +27,8 @@ public:
 
     QHash<int, QByteArray> roleNames() const override;
 
+    Q_INVOKABLE void clear();
+
 private:
     enum ColumnNames {
         Index = Qt::UserRole + 1,

@@ -70,6 +70,13 @@ QHash<int, QByteArray> PlogMessageModel::roleNames() const
     return roles;
 }
 
+void PlogMessageModel::clear()
+{
+    beginResetModel();
+    m_buffer.clear();
+    endResetModel();
+}
+
 void PlogMessageModel::onMessageAppended(GuiMessage guiMessage)
 {
     beginInsertRows(QModelIndex(), m_buffer.size(), m_buffer.size());
