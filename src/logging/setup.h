@@ -3,7 +3,7 @@
 namespace logging
 {
 
-void init();
+void init(const char *log_file);
 void cleanup();
 
 }

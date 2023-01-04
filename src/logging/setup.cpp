@@ -11,9 +11,8 @@
 
 #include <QDebug>
 
-void logging::init()
+void logging::init(const char* log_file)
 {
-    auto log_file = "/tmp/TutCatalog4Viewer.log";
     auto log_size = 1024 * 64; // in bytes
     auto log_count = 3;
 
