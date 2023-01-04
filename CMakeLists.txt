@@ -1,15 +1,15 @@
-set(LIB_NAME qtplogwrapper)
+set(LIB_NAME QtPlogAdapter)
 
 qt_add_library(${LIB_NAME} STATIC
     MANUAL_FINALIZATION
-    src/logging/basicformatter.cpp
-    src/logging/basicformatter.h
-    src/logging/guiappender.cpp
-    src/logging/guiappender.h
-    src/logging/messagehandler.cpp
-    src/logging/messagehandler.h
-    src/logging/setup.cpp
-    src/logging/setup.h
+    src/qtplogadapter/basicformatter.cpp
+    src/qtplogadapter/basicformatter.h
+    src/qtplogadapter/guiappender.cpp
+    src/qtplogadapter/guiappender.h
+    src/qtplogadapter/messagehandler.cpp
+    src/qtplogadapter/messagehandler.h
+    src/qtplogadapter/setup.cpp
+    src/qtplogadapter/setup.h
 )
 
 target_include_directories(${LIB_NAME} PUBLIC

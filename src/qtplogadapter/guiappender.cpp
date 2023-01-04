@@ -1,8 +1,12 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #include "guiappender.h"
 
 #include <QDebug>
 
-using namespace logging;
+using namespace qtplogadapter;
 
 bool GuiAppender::m_singletonCreatedOnce { false };
 GuiAppender* GuiAppender::m_singleton {nullptr};
@@ -33,7 +37,7 @@ void GuiAppender::cleanup()
     m_singleton = nullptr;
 }
 
-void logging::GuiAppender::write(const plog::Record &record)
+void GuiAppender::write(const plog::Record &record)
 {
     auto severity = QString(severityToString(record.getSeverity()));
     auto message = QString(record.getMessage());

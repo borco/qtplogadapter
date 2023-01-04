@@ -1,8 +1,12 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #include "basicformatter.h"
 
 #include <iomanip>
 
-using namespace  logging;
+using namespace qtplogadapter;
 
 plog::util::nstring BasicFormatter::header() // This method returns a header for a new file. In our case it is empty.
 {

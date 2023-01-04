@@ -1,8 +1,12 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #pragma once
 
 #include <plog/Log.h>
 
-namespace logging
+namespace qtplogadapter
 {
 
 class BasicFormatter

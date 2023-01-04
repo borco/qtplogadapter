@@ -1,8 +1,12 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #include "messagehandler.h"
 
 #include <plog/Log.h>
 
-void logging::message_handler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+void qtplogadapter::message_handler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
     const char *file = context.file ? context.file : "";

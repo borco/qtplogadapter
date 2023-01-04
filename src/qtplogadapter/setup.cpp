@@ -1,3 +1,7 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #include "setup.h"
 
 #include "basicformatter.h"
@@ -11,7 +15,7 @@
 
 #include <QDebug>
 
-void logging::init(const char* log_file)
+void qtplogadapter::init(const char* log_file)
 {
     auto log_size = 1024 * 64; // in bytes
     auto log_count = 3;
@@ -21,10 +25,10 @@ void logging::init(const char* log_file)
 
     plog::init(plog::debug, &fileAppender).addAppender(&consoleAppender).addAppender(GuiAppender::get());
 
-    qInstallMessageHandler(logging::message_handler);
+    qInstallMessageHandler(qtplogadapter::message_handler);
 }
 
-void logging::cleanup()
+void qtplogadapter::cleanup()
 {
     qInstallMessageHandler(0);
     GuiAppender::cleanup();

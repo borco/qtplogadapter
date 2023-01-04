@@ -1,10 +1,14 @@
+/*
+    Copyright 2023 by Ioan Calin Borcoman <iborco@gmail.com>
+*/
+
 #pragma once
 
 #include <QObject>
 
 #include <plog/Appenders/IAppender.h>
 
-namespace logging
+namespace qtplogadapter
 {
 
 struct GuiMessage {
@@ -37,7 +41,7 @@ public:
     void setWriteToBuffer(bool newWriteToBuffer);
 
 signals:
-    void messageAppended(logging::GuiMessage guiMessage);
+    void messageAppended(qtplogadapter::GuiMessage guiMessage);
     void writeToBufferChanged();
 
 private:
