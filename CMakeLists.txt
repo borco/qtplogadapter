@@ -18,7 +18,7 @@ qt_add_qml_module(${LIB_NAME}
     VERSION 1.0
     PLUGIN_TARGET ${LIB_NAME}Plugin
     QML_FILES
-        PlogMessageView.qml
+        src/qml/PlogMessageView.qml
     SOURCES
         src/qtplogadapter/plogmessagemodel.cpp
         src/qtplogadapter/plogmessagemodel.h
