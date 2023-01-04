@@ -8,16 +8,10 @@
 
 #include <plog/Appenders/IAppender.h>
 
+#include "guimessage.h"
+
 namespace qtplogadapter
 {
-
-struct GuiMessage {
-    uint index {0};
-    QString severity;
-    QString message;
-};
-
-typedef QList<GuiMessage> GuiMessageList;
 
 class GuiAppender : public QObject, public plog::IAppender
 {
@@ -26,7 +20,6 @@ class GuiAppender : public QObject, public plog::IAppender
     Q_PROPERTY(bool writeToBuffer READ writeToBuffer WRITE setWriteToBuffer NOTIFY writeToBufferChanged)
 
 public:
-
     ~GuiAppender();
 
     static GuiAppender* get();
@@ -47,8 +40,7 @@ signals:
 private:
     explicit GuiAppender(QObject *parent = nullptr);
 
-    static bool m_singletonCreatedOnce;
-    static GuiAppender* m_singleton;
+    inline static GuiAppender* m_singleton {nullptr};
 
     uint m_index {0};
     GuiMessageList m_buffer;

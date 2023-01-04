@@ -8,24 +8,20 @@
 
 using namespace qtplogadapter;
 
-bool GuiAppender::m_singletonCreatedOnce { false };
-GuiAppender* GuiAppender::m_singleton {nullptr};
-
 GuiAppender::GuiAppender(QObject *parent)
     : QObject{parent}
 {
-    qDebug() << "Created buffer appender";
+//    qDebug() << this;
 }
 
 GuiAppender::~GuiAppender()
 {
-    qDebug() << "Deleted buffer appender";
+//    qDebug().nospace() << "~" << this;
 }
 
 GuiAppender *GuiAppender::get()
 {
-    if (!m_singleton && !m_singletonCreatedOnce) {
-        m_singletonCreatedOnce = true;
+    if (!m_singleton) {
         m_singleton = new GuiAppender();
     }
     return m_singleton;
