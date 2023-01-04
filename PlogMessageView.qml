@@ -33,42 +33,28 @@ Item {
         }
     }
 
-    ColumnLayout {
+    ListView {
+        id: listView
+
+        clip: true
         anchors.fill: parent
-        spacing: 0
+        model: PlogMessageModel
+        spacing: 2
 
-        ToolBar {
-            Layout.fillWidth: true
+        delegate: RowLayout {
+            width: ListView.view.width
+            Severity {
+                text: severity
+            }
 
-            RowLayout {
-                anchors.fill: parent
-                ToolButton {
-                    text: qsTr("Clear")
-                    onClicked: PlogMessageModel.clear()
-                }
+            Label {
+                text: message
+                elide: Text.ElideRight
+                //                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                Layout.fillWidth: true
             }
         }
 
-        ListView {
-            clip: true
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            model: PlogMessageModel
-            spacing: 2
-
-            delegate: RowLayout {
-                width: ListView.view.width
-                Severity {
-                    text: severity
-                }
-
-                Label {
-                    text: "%1. %2".arg(index).arg(message)
-                    elide: Text.ElideRight
-                    //                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    Layout.fillWidth: true
-                }
-            }
-        }
+        ScrollIndicator.vertical: ScrollIndicator {}
     }
 }
