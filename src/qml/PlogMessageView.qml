@@ -7,6 +7,8 @@ import QtPlogAdapter
 Item {
     id: control
 
+    property bool wrapMessages: false
+
     component Severity: Rectangle {
         property alias text: severityText.text
         property int padding: 2
@@ -45,12 +47,17 @@ Item {
             width: ListView.view.width
             Severity {
                 text: severity
+                Layout.alignment: control.wrapMessages
+                                  ? Qt.AlignTop
+                                  : Qt.AlignVCenter
             }
 
             Label {
                 text: message
                 elide: Text.ElideRight
-                //                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                wrapMode: control.wrapMessages
+                          ? Text.WrapAtWordBoundaryOrAnywhere
+                          : Text.NoWrap
                 Layout.fillWidth: true
             }
         }
