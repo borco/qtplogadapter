@@ -1,3 +1,3 @@
-# Qt Plog Wrapper
+# Qt Plog Adapter
 
-A Qt wrapper for [Plog](https://github.com/SergiusTheBest/plog).
+A Qt adapter for [Plog](https://github.com/SergiusTheBest/plog).
