@@ -1,7 +1,10 @@
 set(LIB_NAME QtPlogAdapter)
 
+file(GLOB_RECURSE PLOG_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/plog/include/*.h)
+
 qt_add_library(${LIB_NAME}
     STATIC
+    ${PLOG_HEADERS}
     src/qtplogadapter/basicformatter.cpp
     src/qtplogadapter/basicformatter.h
     src/qtplogadapter/guiappender.cpp
@@ -25,7 +28,7 @@ qt_add_qml_module(${LIB_NAME}
 )
 
 target_include_directories(${LIB_NAME} PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/3rdparty/plog/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/plog/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/qtplogadapter
 )
