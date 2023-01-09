@@ -11,7 +11,7 @@ using namespace qtplogadapter;
 PlogMessageModel::PlogMessageModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
-    qDebug().nospace() << "PlogMessageModel: created (" << static_cast<void*>(this) << ")";
+    qDebug().nospace() << "PlogMessageModel: instance created (" << static_cast<void*>(this) << ")";
 
     auto gui_appender = GuiAppender::get();
     gui_appender->setWriteToBuffer(false);
@@ -25,7 +25,7 @@ PlogMessageModel::PlogMessageModel(QObject *parent)
 
 PlogMessageModel::~PlogMessageModel()
 {
-    qDebug().nospace() << "PlogMessageModel: deleted (" << static_cast<void*>(this) << ")";
+    qDebug().nospace() << "PlogMessageModel: instance deleted (" << static_cast<void*>(this) << ")";
 }
 
 int PlogMessageModel::rowCount(const QModelIndex &parent) const
