@@ -60,7 +60,7 @@ Item {
             Label {
                 text: message
                 elide: Text.ElideRight
-                wrapMode: control.wrapMessages
+                wrapMode: root.wrapMessages
                           ? Text.WrapAtWordBoundaryOrAnywhere
                           : Text.NoWrap
                 Layout.fillWidth: true
