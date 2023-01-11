@@ -20,6 +20,8 @@ qt_add_qml_module(${LIB_NAME}
     URI ${LIB_NAME}
     VERSION 1.0
     PLUGIN_TARGET ${LIB_NAME}Plugin
+    RESOURCE_PREFIX "/"
+    OUTPUT_DIRECTORY ${LIB_NAME}
     QML_FILES
         src/qml/PlogMessageView.qml
     SOURCES
