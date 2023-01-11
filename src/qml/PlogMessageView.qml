@@ -5,17 +5,22 @@ import QtQuick.Layouts
 import QtPlogAdapter
 
 Item {
-    id: control
+    id: root
 
     property bool wrapMessages: false
+    property int severityRadius: 0
+    property int severityPadding: 2
+    property int severityWidth: 80
 
     component Severity: Rectangle {
         property alias text: severityText.text
-        property int padding: 2
 
-        height: severityText.height + 2 * padding
-        width: 100
-        radius: 6
+        height: severityText.height + 2 * root.severityPadding
+        width: root.severityWidth
+        radius: root.severityRadius
+        border.width: 1
+        border.color: Qt.darker(color, 1.1)
+
         color: {
             switch(severity) {
             case "DEBUG":
@@ -47,7 +52,7 @@ Item {
             width: ListView.view.width
             Severity {
                 text: severity
-                Layout.alignment: control.wrapMessages
+                Layout.alignment: root.wrapMessages
                                   ? Qt.AlignTop
                                   : Qt.AlignVCenter
             }
