@@ -12,32 +12,47 @@ Item {
     property int severityPadding: 2
     property int severityWidth: 80
 
+    property bool inDarkMode: palette.text > palette.base
+
+    property color backgroundColor: palette.base
+    property color baseColor: inDarkMode
+                              ? Qt.lighter(backgroundColor, 1.2)
+                              : Qt.darker(backgroundColor, 1.05)
+    property color alternateColor: inDarkMode
+                                   ? Qt.lighter(backgroundColor, 1.4)
+                                   : Qt.darker(backgroundColor, 1.1)
+
     component Severity: Rectangle {
         property alias text: severityText.text
+        property int index
 
         height: severityText.height + 2 * root.severityPadding
         width: root.severityWidth
         radius: root.severityRadius
-        border.width: 1
-        border.color: Qt.darker(color, 1.1)
 
         color: {
             switch(severity) {
             case "DEBUG":
-                return "transparent"
+                return inDarkMode ? "#10FFFFFF" : "#10000000"
             case "INFO":
-                return "#caffbf"
+                return "#8030DB5B"
             case "WARN":
-                return "#fdffb6"
+                return "#80FFD426"
             default:
-                return "#ffc6ff"
+                return "#80FF6961"
             }
         }
 
         Label {
             id: severityText
+            color: palette.text
             anchors.centerIn: parent
         }
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: backgroundColor
     }
 
     ListView {
@@ -46,24 +61,32 @@ Item {
         clip: true
         anchors.fill: parent
         model: PlogMessageModel
-        spacing: 2
+        spacing: 0
 
-        delegate: RowLayout {
+        delegate: Rectangle {
             width: ListView.view.width
-            Severity {
-                text: severity
-                Layout.alignment: root.wrapMessages
-                                  ? Qt.AlignTop
-                                  : Qt.AlignVCenter
-            }
+            implicitHeight: delegateLayout.implicitHeight
 
-            Label {
-                text: message
-                elide: Text.ElideRight
-                wrapMode: root.wrapMessages
-                          ? Text.WrapAtWordBoundaryOrAnywhere
-                          : Text.NoWrap
-                Layout.fillWidth: true
+            color: index % 2 ? root.baseColor : root.alternateColor
+
+            RowLayout {
+                id: delegateLayout
+                width: parent.width
+
+                Severity {
+                    text: severity
+                    Layout.fillHeight: true
+                }
+
+                Label {
+                    text: message
+                    color: palette.text
+                    elide: Text.ElideRight
+                    wrapMode: root.wrapMessages
+                              ? Text.WrapAtWordBoundaryOrAnywhere
+                              : Text.NoWrap
+                    Layout.fillWidth: true
+                }
             }
         }
 
