@@ -58,6 +58,8 @@ Item {
     ListView {
         id: listView
 
+        property bool moveToEnd: true
+
         clip: true
         anchors.fill: parent
         model: PlogMessageModel
@@ -87,6 +89,14 @@ Item {
                               : Text.NoWrap
                     Layout.fillWidth: true
                 }
+            }
+        }
+
+        onContentYChanged: moveToEnd = atYEnd
+
+        onCountChanged: {
+            if (moveToEnd) {
+                Qt.callLater(listView.positionViewAtEnd)
             }
         }
 
