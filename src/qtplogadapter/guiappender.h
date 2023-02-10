@@ -6,6 +6,8 @@
 
 #include <QObject>
 
+#include "iborcocpputils/singleton.h"
+
 #include <plog/Appenders/IAppender.h>
 
 #include "guimessage.h"
@@ -13,7 +15,7 @@
 namespace qtplogadapter
 {
 
-class GuiAppender : public QObject, public plog::IAppender
+class GuiAppender : public QObject, public plog::IAppender, public iborcocpputils::Singleton<GuiAppender>
 {
     Q_OBJECT
 
@@ -21,9 +23,6 @@ class GuiAppender : public QObject, public plog::IAppender
 
 public:
     ~GuiAppender();
-
-    static GuiAppender* get();
-    static void cleanup();
 
     void write(const plog::Record &record) override;
 
@@ -38,9 +37,9 @@ signals:
     void writeToBufferChanged();
 
 private:
-    explicit GuiAppender(QObject *parent = nullptr);
+    friend class iborcocpputils::Singleton<GuiAppender>;
 
-    inline static GuiAppender* m_singleton {nullptr};
+    explicit GuiAppender(QObject *parent = nullptr);
 
     uint m_index {0};
     GuiMessageList m_buffer;

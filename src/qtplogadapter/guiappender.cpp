@@ -19,20 +19,6 @@ GuiAppender::~GuiAppender()
 //    qDebug().nospace() << "~" << this;
 }
 
-GuiAppender *GuiAppender::get()
-{
-    if (!m_singleton) {
-        m_singleton = new GuiAppender();
-    }
-    return m_singleton;
-}
-
-void GuiAppender::cleanup()
-{
-    delete m_singleton;
-    m_singleton = nullptr;
-}
-
 void GuiAppender::write(const plog::Record &record)
 {
     auto severity = QString(severityToString(record.getSeverity()));
