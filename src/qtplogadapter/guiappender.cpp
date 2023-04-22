@@ -22,8 +22,11 @@ GuiAppender::~GuiAppender()
 void GuiAppender::write(const plog::Record &record)
 {
     auto severity = QString(severityToString(record.getSeverity()));
+#ifdef WIN32
+    auto message = QString::fromWCharArray(record.getMessage());
+#else
     auto message = QString(record.getMessage());
-
+#endif
     // skip some messages
     if (message.startsWith("qrc:/qt-project.org/imports/QtQuick/Controls/macOS/Button.qml:11")) {
         return;
